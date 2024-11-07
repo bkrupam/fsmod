@@ -149,5 +149,41 @@ Create an account with username and password
 
 https://docs.google.com/document/d/1lVrs-EBlSBTkKZpaSd1-FoZUS03Zq3Z9AtDTBwuDUZs/edit?tab=t.0
 </xmp>
+<h2>uthayan ssh</h2>
+<xmp>
+Consider two systems:
+Local system [ initiate SSH connection ]
+Remote system – identify IP address, where the shell script will be executed
+    
+Steps:
+1. Open your terminal on the local system and generate an SSH key pair : ssh-keygen -t rsa -b 2048
+2. Save the keys to the default location (~.ssh/id_rsa)
+3. Copy the public key to the remote system: ssh-copy-id username@remote_ip_address
+4.Create a shell script on the remote system 
+5. Echo “hello SSH” and save it as a shell script
+6.Run the shell script from your local system using SSH: ssh username@remote_ip_address 'bash ~/test_script.sh'
+7.Check the output
+    
+Install the SSH Plugin in Jenkins:
+    
+1.Go to Manage Jenkins > Manage Plugins > Available.
+2.Search for and install the SSH plugin (if not already installed).
+    
+Configure SSH in Jenkins:
+    
+1.Go to Manage Jenkins > Configure System.
+2.Scroll down to the SSH remote hosts section and click Add.
+3.Enter the following details:
+Name: A name for this SSH configuration.
+Hostname: The IP address of your remote system.
+Username: The username to log into the remote system.
+Private Key: Click Add and enter your private key (from ~/.ssh/id_rsa on your local system).
+4. Click Save to save your SSH configuration.
+    
+Create a Jenkins Job to Run the Script via SSH:
+    
+Create a new Freestyle project in Jenkins.
+Under Build, click Add build step > Execute shell
+</xmp>
 </body>
 </html>
